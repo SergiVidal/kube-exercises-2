@@ -1,19 +1,13 @@
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: hpa-hw03
+  name: php-apache
   namespace: default
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: deploy-hw03
-  maxReplicas: 6
-  minReplicas: 3
-  metrics: 
-    - type: Resource
-      resource:
-        name: memory 
-        target:
-          type: Utilization
-          averageUtilization: 50
+    name: php-apache
+  maxReplicas: 2
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 50

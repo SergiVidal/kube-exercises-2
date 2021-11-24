@@ -1,26 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-hw03
-  labels:
-    run: load-generator
+  name: php-apache
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      run: load-generator
+      run: php-apache
+  replicas: 1
   template:
     metadata:
       labels:
-        run: load-generator
+        run: php-apache
     spec:
       containers:
-      - name:  load-generator
-        image: nginx:1.19.4
+      - name: php-apache
+        image: k8s.gcr.io/hpa-example
+        ports:
+        - containerPort: 80
         resources:
           limits:
-            cpu: 20m
-            memory: "128Mi"
+            cpu: 500m
           requests:
-            cpu: 20m
-            memory: "128Mi"
+            cpu: 200m

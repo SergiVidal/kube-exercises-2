@@ -7,6 +7,8 @@ kubectl create -f deploy.yaml
 kubectl create -f svc.yaml
 kubectl create -f hpa.yaml
 
-kubectl run -i --tty load-generator --rm --image=busybox --restart=Never --
-/bin/sh -c "while sleep 0.01; do wget -q -O- http://svc-hw03; done"
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
 ```
+
+* (NOTA: Mirar imagen "ex3.1.png")
