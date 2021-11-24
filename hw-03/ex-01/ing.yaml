@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ing-hw03
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.org/ssl-services: "nginx-server"
+spec:
+  tls:
+    - hosts:
+      - svidal.student.lasalle.com
+      secretName: tls-certificate
+  rules:
+  - host: svidal.student.lasalle.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-hw03
+            port:
+              number: 80

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-hw03
+spec:
+  selector:
+    app: nginx-hw03
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80

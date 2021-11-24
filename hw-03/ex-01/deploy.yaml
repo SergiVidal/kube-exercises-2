@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-hw03
+  labels:
+    app: nginx-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nginx-server
+    spec:
+      containers:
+      - name:  nginx-server-ctr
+        image: nginx:1.19.4
+        resources:
+          limits:
+            cpu: 20m
+            memory: "128Mi"
+          requests:
+            cpu: 20m
+            memory: "128Mi"
