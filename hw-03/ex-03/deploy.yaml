@@ -3,26 +3,24 @@ kind: Deployment
 metadata:
   name: deploy-hw03
   labels:
-    app: nginx-server
+    run: load-generator
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx-hw03
-  strategy:
-    type: Recreate
+      run: load-generator
   template:
     metadata:
       labels:
-        app: nginx-hw03
+        run: load-generator
     spec:
       containers:
-      - name:  nginx-hw03-ctr
+      - name:  load-generator
         image: nginx:1.19.4
         resources:
           limits:
-            cpu: 100m
-            memory: "256Mi"
+            cpu: 20m
+            memory: "128Mi"
           requests:
-            cpu: 100m
-            memory: "256Mi"
+            cpu: 20m
+            memory: "128Mi"
